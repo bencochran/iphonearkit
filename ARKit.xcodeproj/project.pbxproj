@@ -7,14 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1109BC311082F1B2006FFB4B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1109BC301082F1B2006FFB4B /* QuartzCore.framework */; };
 		1109BCBE1082F1D4006FFB4B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1109BC301082F1B2006FFB4B /* QuartzCore.framework */; };
-		1118AA4A10257DCE00C94460 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 1118AA4910257DCE00C94460 /* location.png */; };
-		111A141C1024C875002D39A1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111A141B1024C875002D39A1 /* CoreLocation.framework */; };
-		111A142C1024C8A6002D39A1 /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111A142A1024C8A6002D39A1 /* ARViewController.m */; };
-		112543AA1024DE590086106E /* ARCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 112543A91024DE590086106E /* ARCoordinate.m */; };
-		11609B0B1026014F00A964C8 /* ARGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11609B0A1026014F00A964C8 /* ARGeoViewController.m */; };
-		116DC887102933A200EB5A0A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 116DC886102933A200EB5A0A /* MapKit.framework */; };
 		1171B21F106EAD5700CC3630 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		1171B271106EAD5E00CC3630 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1171B295106EAD6500CC3630 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -26,18 +19,23 @@
 		1171B3DE106EE83500CC3630 /* ARGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11609B0A1026014F00A964C8 /* ARGeoViewController.m */; };
 		1171B42C106EEB3600CC3630 /* LogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1171B42B106EEB3600CC3630 /* LogicTests.m */; };
 		117BCE9210829C1E007A27AB /* ARVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 117BCE9110829C1E007A27AB /* ARVector.m */; };
-		1D3623260D0F684500981E51 /* ARKitDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ARKitDemoAppDelegate.m */; };
-		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		CE169F581025704E00556F8F /* ARGeoCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE169F571025704E00556F8F /* ARGeoCoordinate.m */; };
+		B880D25810978DB5005601EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		B880D25910978DBB005601EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		B880D25F10978E58005601EF /* ARCoordinate.h in Headers */ = {isa = PBXBuildFile; fileRef = 112543A81024DE590086106E /* ARCoordinate.h */; };
+		B880D26010978E58005601EF /* ARViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 111A142B1024C8A6002D39A1 /* ARViewController.h */; };
+		B880D26110978E58005601EF /* ARGeoCoordinate.h in Headers */ = {isa = PBXBuildFile; fileRef = CE169F561025704E00556F8F /* ARGeoCoordinate.h */; };
+		B880D26210978E58005601EF /* ARGeoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 11609B091026014F00A964C8 /* ARGeoViewController.h */; };
+		B880D26310978E6A005601EF /* ARCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 112543A91024DE590086106E /* ARCoordinate.m */; };
+		B880D26410978E6A005601EF /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111A142A1024C8A6002D39A1 /* ARViewController.m */; };
+		B880D26510978E6A005601EF /* ARGeoCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE169F571025704E00556F8F /* ARGeoCoordinate.m */; };
+		B880D26610978E6A005601EF /* ARGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11609B0A1026014F00A964C8 /* ARGeoViewController.m */; };
+		B880D28D10978EF0005601EF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 116DC886102933A200EB5A0A /* MapKit.framework */; };
+		B880D28E10978EF0005601EF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111A141B1024C875002D39A1 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1109BC301082F1B2006FFB4B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		1118AA4910257DCE00C94460 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		1119294A106E7C3D00D96627 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		111A141B1024C875002D39A1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		111A142A1024C8A6002D39A1 /* ARViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARViewController.m; sourceTree = "<group>"; };
@@ -53,15 +51,11 @@
 		117BCE9010829C1E007A27AB /* ARVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARVector.h; sourceTree = "<group>"; };
 		117BCE9110829C1E007A27AB /* ARVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARVector.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* ARKitDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKitDemoAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* ARKitDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARKitDemoAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* ARKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* ARKitDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARKitDemo_Prefix.pch; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* ARKitDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ARKitDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		B88092E010A9E3580061E490 /* ARKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARKit.h; path = ARKit/ARKit.h; sourceTree = SOURCE_ROOT; };
+		B880D25510978DA7005601EF /* libARKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libARKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B880D29510978F8E005601EF /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		CE169F561025704E00556F8F /* ARGeoCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGeoCoordinate.h; sourceTree = "<group>"; };
 		CE169F571025704E00556F8F /* ARGeoCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGeoCoordinate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,16 +74,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+		B880D25310978DA7005601EF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
-				111A141C1024C875002D39A1 /* CoreLocation.framework in Frameworks */,
-				116DC887102933A200EB5A0A /* MapKit.framework in Frameworks */,
-				1109BC311082F1B2006FFB4B /* QuartzCore.framework in Frameworks */,
+				B880D28D10978EF0005601EF /* MapKit.framework in Frameworks */,
+				B880D28E10978EF0005601EF /* CoreLocation.framework in Frameworks */,
+				B880D25810978DB5005601EF /* Foundation.framework in Frameworks */,
+				B880D25910978DBB005601EF /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,9 +91,15 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1D3623240D0F684500981E51 /* ARKitDemoAppDelegate.h */,
-				1D3623250D0F684500981E51 /* ARKitDemoAppDelegate.m */,
-				111A142D1024C8AC002D39A1 /* ARKIt */,
+				B88092E010A9E3580061E490 /* ARKit.h */,
+				112543A81024DE590086106E /* ARCoordinate.h */,
+				112543A91024DE590086106E /* ARCoordinate.m */,
+				111A142B1024C8A6002D39A1 /* ARViewController.h */,
+				111A142A1024C8A6002D39A1 /* ARViewController.m */,
+				CE169F561025704E00556F8F /* ARGeoCoordinate.h */,
+				CE169F571025704E00556F8F /* ARGeoCoordinate.m */,
+				11609B091026014F00A964C8 /* ARGeoViewController.h */,
+				11609B0A1026014F00A964C8 /* ARGeoViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -135,8 +133,8 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* ARKitDemo.app */,
 				1119294A106E7C3D00D96627 /* UnitTests.octest */,
+				B880D25510978DA7005601EF /* libARKit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -157,8 +155,6 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* ARKitDemo_Prefix.pch */,
-				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -166,10 +162,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1118AA4910257DCE00C94460 /* location.png */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				8D1107310486CEB800E47090 /* ARKitDemo-Info.plist */,
-				1171B440106EEBDB00CC3630 /* UnitTests-Info.plist */,
+				B880D29510978F8E005601EF /* UnitTests-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -188,6 +181,20 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B880D25110978DA7005601EF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B880D25F10978E58005601EF /* ARCoordinate.h in Headers */,
+				B880D26010978E58005601EF /* ARViewController.h in Headers */,
+				B880D26110978E58005601EF /* ARGeoCoordinate.h in Headers */,
+				B880D26210978E58005601EF /* ARGeoViewController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		11192949106E7C3D00D96627 /* UnitTests */ = {
@@ -208,22 +215,22 @@
 			productReference = 1119294A106E7C3D00D96627 /* UnitTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		1D6058900D05DD3D006BFB54 /* ARKitDemo */ = {
+		B880D25410978DA7005601EF /* ARKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "ARKitDemo" */;
+			buildConfigurationList = B880D25E10978E1E005601EF /* Build configuration list for PBXNativeTarget "ARKit" */;
 			buildPhases = (
-				1D60588D0D05DD3D006BFB54 /* Resources */,
-				1D60588E0D05DD3D006BFB54 /* Sources */,
-				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				B880D25110978DA7005601EF /* Headers */,
+				B880D25210978DA7005601EF /* Sources */,
+				B880D25310978DA7005601EF /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = ARKitDemo;
-			productName = ARKitDemo;
-			productReference = 1D6058910D05DD3D006BFB54 /* ARKitDemo.app */;
-			productType = "com.apple.product-type.application";
+			name = ARKit;
+			productName = ARKit;
+			productReference = B880D25510978DA7005601EF /* libARKit.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -233,14 +240,14 @@
 			attributes = {
 				ORGANIZATIONNAME = "Zac White";
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ARKitDemo" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ARKit" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* ARKitDemo */,
+				B880D25410978DA7005601EF /* ARKit */,
 				11192949106E7C3D00D96627 /* UnitTests */,
 			);
 		};
@@ -251,15 +258,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1D60588D0D05DD3D006BFB54 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				1118AA4A10257DCE00C94460 /* location.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,16 +293,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+		B880D25210978DA7005601EF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* ARKitDemoAppDelegate.m in Sources */,
-				111A142C1024C8A6002D39A1 /* ARViewController.m in Sources */,
-				112543AA1024DE590086106E /* ARCoordinate.m in Sources */,
-				CE169F581025704E00556F8F /* ARGeoCoordinate.m in Sources */,
-				11609B0B1026014F00A964C8 /* ARGeoViewController.m in Sources */,
+				B880D26310978E6A005601EF /* ARCoordinate.m in Sources */,
+				B880D26410978E6A005601EF /* ARViewController.m in Sources */,
+				B880D26510978E6A005601EF /* ARGeoCoordinate.m in Sources */,
+				B880D26610978E6A005601EF /* ARGeoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,29 +363,30 @@
 			};
 			name = Release;
 		};
-		1D6058940D05DD3E006BFB54 /* Debug */ = {
+		B880D25610978DA8005601EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ARKitDemo_Prefix.pch;
-				INFOPLIST_FILE = "ARKitDemo-Info.plist";
-				PRODUCT_NAME = ARKitDemo;
+				PREBINDING = NO;
+				PRODUCT_NAME = ARKit;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Debug;
 		};
-		1D6058950D05DD3E006BFB54 /* Release */ = {
+		B880D25710978DA8005601EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ARKitDemo_Prefix.pch;
-				INFOPLIST_FILE = "ARKitDemo-Info.plist";
-				PRODUCT_NAME = ARKitDemo;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = ARKit;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -431,16 +428,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "ARKitDemo" */ = {
+		B880D25E10978E1E005601EF /* Build configuration list for PBXNativeTarget "ARKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D6058940D05DD3E006BFB54 /* Debug */,
-				1D6058950D05DD3E006BFB54 /* Release */,
+				B880D25610978DA8005601EF /* Debug */,
+				B880D25710978DA8005601EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ARKitDemo" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ARKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

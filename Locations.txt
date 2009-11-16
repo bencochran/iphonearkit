@@ -1,3 +1,5 @@
+// Eric Typed this line
+// But ben typed this
 //Locations
 /*
 * Colorado
