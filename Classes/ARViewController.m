@@ -245,9 +245,10 @@
 		//go through and rotate all the views.
 		
 		CGFloat rotation = [self _rotationFromOrientation:oldOrientation toOrientation:self.viewInterfaceOrientation];
-		for (UIView *subview in ar_coordinateViews) {
-			subview.transform = CGAffineTransformRotate(subview.transform, rotation);
-		}
+		ar_overlayView.transform = CGAffineTransformRotate(ar_overlayView.transform, rotation);
+//		for (UIView *subview in ar_coordinateViews) {
+//			subview.transform = CGAffineTransformRotate(subview.transform, rotation);
+//		}
 	}
 }
 
@@ -590,7 +591,7 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 	
 	NSLog(@"ROTATING: from %f to %f", originalOffset, newOffset);
 	
-	return fmod(originalOffset + newOffset, 2 * M_PI);
+	return fmod(originalOffset - newOffset, 2 * M_PI);
 }
 
 - (double)_widthInRadiansForView:(UIView *)viewToDraw {
