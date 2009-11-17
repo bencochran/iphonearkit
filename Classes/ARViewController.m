@@ -87,17 +87,16 @@
 
 - (id)initWithLocationManager:(CLLocationManager *)manager {
 	
-	if (!(self = [super init])) return nil;
+	if (!(self = [self init])) return nil;
 	
 	//use the passed in location manager instead of ours.
 	self.locationManager = manager;
 	
 	//assign our locationDelegate if it already has a delegate object.
 	if (self.locationManager.delegate) self.locationDelegate = self.locationManager.delegate;
-	
+	else self.locationDelegate = nil;
+
 	self.locationManager.delegate = self;
-	
-	self.locationDelegate = nil;
 	
 	return self;
 }
@@ -204,14 +203,13 @@
 	
 	if (!self.locationManager) {
 		self.locationManager = [[[CLLocationManager alloc] init] autorelease];
-		
-		//we want every move.
-		self.locationManager.headingFilter = kCLHeadingFilterNone;
-		self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-		
-		[self.locationManager startUpdatingHeading];
 	}
+	//we want every move.
+	self.locationManager.headingFilter = kCLHeadingFilterNone;
+	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	
+	[self.locationManager startUpdatingHeading];
+
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
 	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 	
