@@ -26,7 +26,7 @@
 
 - (void)calibrateUsingOrigin:(CLLocation *)origin {
 	
-	if (!self.geoLocation) return;
+	if (self.geoLocation == nil) return;
 	
 	double baseDistance = [origin getDistanceFrom:self.geoLocation];
 	

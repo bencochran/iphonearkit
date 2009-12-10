@@ -318,8 +318,9 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 
 - (void)addCoordinate:(ARCoordinate *)coordinate animated:(BOOL)animated {
 	//do some kind of animation?
+
 	[ar_coordinates addObject:coordinate];
-		
+	
 	if (coordinate.radialDistance > self.maximumScaleDistance) {
 		self.maximumScaleDistance = coordinate.radialDistance;
 	}
@@ -329,11 +330,24 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 }
 
 - (void)addCoordinates:(NSArray *)newCoordinates {
-	
 	//go through and add each coordinate.
 	for (ARCoordinate *coordinate in newCoordinates) {
 		[self addCoordinate:coordinate animated:NO];
 	}
+}
+
+- (void)clearCoordinates {
+	[ar_coordinates removeAllObjects];
+//	for (ARCoordinate *coordinate in ar_coordinates) {
+//		[self removeCoordinate: coordinate animated:NO];
+//	}
+}
+
+- (void)replaceCoordinates:(NSArray *)newCoordinates {
+	for (ARCoordinate *coordinate in ar_coordinates) {
+		[self removeCoordinate: coordinate animated:NO];
+	}
+	[self addCoordinates:newCoordinates];
 }
 
 - (void)removeCoordinate:(ARCoordinate *)coordinate {
@@ -345,7 +359,7 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 	[ar_coordinates removeObject:coordinate];
 }
 
-- (void)removeCoordinates:(NSArray *)coordinates {	
+- (void)removeCoordinates:(NSArray *)coordinates {
 	for (ARCoordinate *coordinateToRemove in coordinates) {
 		NSUInteger indexToRemove = [ar_coordinates indexOfObject:coordinateToRemove];
 		
@@ -368,6 +382,7 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 	ar_debugView.text = [NSString stringWithFormat:@"%.4f %.4f %.4f", _latestXAcceleration, _latestYAcceleration, _viewportRotation];
 	
 	int index = 0;
+
 	for (ARCoordinate *item in ar_coordinates) {
 		
 		UIView *viewToDraw = [ar_coordinateViews objectAtIndex:index];

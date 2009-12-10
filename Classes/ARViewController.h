@@ -88,6 +88,8 @@
 
 - (void)addCoordinates:(NSArray *)newCoordinates;
 
+- (void)clearCoordinates;
+- (void)replaceCoordinates:(NSArray *)newCoordinates;
 
 //removing coordinates
 - (void)removeCoordinate:(ARCoordinate *)coordinate;
