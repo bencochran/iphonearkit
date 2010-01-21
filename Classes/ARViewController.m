@@ -101,6 +101,18 @@
 	return self;
 }
 
+- (id)initWithLocationManager:(CLLocationManager *)manager accelerometer:(UIAccelerometer *)accelerometer {
+	if ([self initWithLocationManager:manager]) {
+		self.accelerometerManager = accelerometer;
+		
+		if (self.accelerometerManager.delegate) self.accelerometerDelegate = self.accelerometerManager.delegate;
+		else self.accelerometerDelegate = nil;
+		
+		self.accelerometerManager.delegate = self;
+	}
+	return self;
+}
+
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
 	[ar_overlayView release];
@@ -218,9 +230,11 @@
 	
 	if (!self.accelerometerManager) {
 		self.accelerometerManager = [UIAccelerometer sharedAccelerometer];
-		self.accelerometerManager.updateInterval = 0.01;
-		self.accelerometerManager.delegate = self;
 	}
+	self.accelerometerManager.updateInterval = 0.01;
+	
+	// steal back the delegate
+	self.accelerometerManager.delegate = self;
 	
 	if (!self.centerCoordinate) {
 		self.centerCoordinate = [ARCoordinate coordinateWithRadialDistance:1.0 inclination:0 azimuth:0];

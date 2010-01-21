@@ -98,6 +98,7 @@
 - (void)removeCoordinates:(NSArray *)coordinates;
 
 - (id)initWithLocationManager:(CLLocationManager *)manager;
+- (id)initWithLocationManager:(CLLocationManager *)manager accelerometer:(UIAccelerometer *)accelerometer;
 
 - (void)startListening;
 - (void)updateLocations:(NSTimer *)timer;
