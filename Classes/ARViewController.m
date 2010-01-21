@@ -370,7 +370,10 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 
 - (void)removeCoordinate:(ARCoordinate *)coordinate animated:(BOOL)animated {
 	//do some kind of animation?
-	[ar_coordinates removeObject:coordinate];
+	NSUInteger index = [ar_coordinates indexOfObject:coordinate];
+	[ar_coordinates removeObjectAtIndex:index];
+	[(UIView *)[ar_coordinateViews objectAtIndex:index] removeFromSuperview];
+	[ar_coordinateViews removeObjectAtIndex:index];
 }
 
 - (void)removeCoordinates:(NSArray *)coordinates {
@@ -380,6 +383,7 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 		//TODO: Error checking in here.
 		
 		[ar_coordinates removeObjectAtIndex:indexToRemove];
+		[(UIView *)[ar_coordinateViews objectAtIndex:indexToRemove] removeFromSuperview];
 		[ar_coordinateViews removeObjectAtIndex:indexToRemove];
 	}
 }
