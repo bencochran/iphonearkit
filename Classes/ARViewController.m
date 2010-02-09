@@ -61,18 +61,6 @@
 	_latestYAcceleration = -1.0f;
 	_latestZAcceleration = -1.0f;
 	
-#if !TARGET_IPHONE_SIMULATOR
-	
-	self.cameraController = [[[UIImagePickerController alloc] init] autorelease];
-	self.cameraController.sourceType = UIImagePickerControllerSourceTypeCamera;
-	
-	self.cameraController.cameraViewTransform = CGAffineTransformScale(self.cameraController.cameraViewTransform,
-																	   1.13f,
-																	   1.13f);
-	
-	self.cameraController.showsCameraControls = NO;
-	self.cameraController.navigationBarHidden = YES;
-#endif
 	self.scaleViewsBasedOnDistance = NO;
 	self.maximumScaleDistance = 0.0;
 	self.minimumScaleFactor = 1.0;
@@ -80,9 +68,27 @@
 	self.rotateViewsBasedOnPerspective = NO;
 	self.maximumRotationAngle = M_PI / 6.0;
 	
-	self.wantsFullScreenLayout = YES;
+	self.wantsFullScreenLayout = NO;
 	
 	return self;
+}
+
+- (UIImagePickerController *)cameraController {
+	// Lazily load the camera controller
+#if !TARGET_IPHONE_SIMULATOR
+	if (cameraController == nil) {
+		self.cameraController = [[[UIImagePickerController alloc] init] autorelease];
+		cameraController.sourceType = UIImagePickerControllerSourceTypeCamera;
+		
+		cameraController.cameraViewTransform = CGAffineTransformScale(cameraController.cameraViewTransform,
+																		   1.13f,
+																		   1.13f);
+		
+		cameraController.showsCameraControls = NO;
+		cameraController.navigationBarHidden = YES;
+	}
+#endif
+	return cameraController;
 }
 
 - (id)initWithLocationManager:(CLLocationManager *)manager {
@@ -492,6 +498,8 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+	// First, reset the cameraController
+	self.cameraController = nil;
 #if !TARGET_IPHONE_SIMULATOR
 	[self.cameraController setCameraOverlayView:ar_overlayView];
 	[self presentModalViewController:self.cameraController animated:NO];
