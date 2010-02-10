@@ -86,6 +86,7 @@
 		
 		cameraController.showsCameraControls = NO;
 		cameraController.navigationBarHidden = YES;
+		cameraController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	}
 #endif
 	return cameraController;
