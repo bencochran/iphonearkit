@@ -38,14 +38,9 @@
 	double maximumScaleDistance;
 	double minimumScaleFactor;
 	
-	//defaults to 20hz;
-	double updateFrequency;
-	
 	BOOL rotateViewsBasedOnPerspective;
 	double maximumRotationAngle;
-	
-	UIInterfaceOrientation viewInterfaceOrientation;
-	
+
 @private
 	double _latestHeading;
 	UIAccelerationValue _latestXAcceleration;
@@ -56,8 +51,6 @@
 	double _viewportRotation;
 	
 	BOOL ar_debugMode;
-	
-	NSTimer *_updateTimer;
 	
 	UIView *ar_overlayView;
 	
@@ -77,10 +70,6 @@
 
 @property BOOL rotateViewsBasedOnPerspective;
 @property double maximumRotationAngle;
-
-@property double updateFrequency;
-
-@property (readonly) UIInterfaceOrientation viewInterfaceOrientation;
 
 //adding coordinates to the underlying data model.
 - (void)addCoordinate:(ARCoordinate *)coordinate;

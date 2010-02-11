@@ -7,11 +7,12 @@
 //
 
 #import "ARViewController.h"
-
 #import <QuartzCore/QuartzCore.h>
 
 #define VIEWPORT_WIDTH_RADIANS .5
 #define VIEWPORT_HEIGHT_RADIANS .7392
+#define kFilteringFactor 0.05
+#define degreesToRadians(x) (M_PI * (x) / 180.0)
 
 @interface ARViewController (Private)
 
@@ -30,9 +31,6 @@
 @synthesize scaleViewsBasedOnDistance, rotateViewsBasedOnPerspective;
 @synthesize maximumScaleDistance;
 @synthesize minimumScaleFactor, maximumRotationAngle;
-
-@synthesize updateFrequency;
-@synthesize viewInterfaceOrientation;
 
 @synthesize debugMode = ar_debugMode;
 
@@ -53,9 +51,6 @@
 	ar_coordinates = [[NSMutableArray alloc] init];
 	ar_coordinateViews = [[NSMutableArray alloc] init];
 	
-	_updateTimer = nil;
-	self.updateFrequency = 1 / 20.0;
-	
 	_latestHeading = -1.0f;
 	_latestXAcceleration = -1.0f;
 	_latestYAcceleration = -1.0f;
@@ -68,7 +63,7 @@
 	self.rotateViewsBasedOnPerspective = NO;
 	self.maximumRotationAngle = M_PI / 6.0;
 	
-	self.wantsFullScreenLayout = NO;
+	self.wantsFullScreenLayout = YES;
 	
 	return self;
 }
@@ -140,30 +135,11 @@
 	self.view = ar_overlayView;
 }
 
-- (void)setUpdateFrequency:(double)newUpdateFrequency {
-	
-	updateFrequency = newUpdateFrequency;
-	
-	if (!_updateTimer) return;
-	
-	[_updateTimer invalidate];
-	[_updateTimer release];
-	
-	_updateTimer = [[NSTimer scheduledTimerWithTimeInterval:self.updateFrequency
-													 target:self
-												   selector:@selector(updateLocations:)
-												   userInfo:nil
-													repeats:YES] retain];
-}
-
 - (void)setDebugMode:(BOOL)flag {
 	if (self.debugMode == flag) return;
 	
 	ar_debugMode = flag;
-	
-	//we don't need to update the view.
-	if (![self isViewLoaded]) return;
-	
+		
 	if (self.debugMode) [ar_overlayView addSubview:ar_debugView];
 	else [ar_debugView removeFromSuperview];
 }
@@ -176,14 +152,7 @@
 	//autoadjust the width and height of our viewport based on the view's size.
 	double viewWidthRadians = VIEWPORT_WIDTH_RADIANS / (self.view.bounds.size.width / viewBounds.size.width);
 	double viewHeightRadians = VIEWPORT_HEIGHT_RADIANS / (self.view.bounds.size.height / viewBounds.size.height);
-	
-	if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || UIInterfaceOrientationLandscapeRight) {
-		//swap them.
-		double temp = viewWidthRadians;
-		viewWidthRadians = viewHeightRadians;
-		viewHeightRadians = temp;
-	}
-	
+		
 	double leftAzimuth = centerAzimuth - VIEWPORT_WIDTH_RADIANS / 2.0 - viewWidthRadians;
 	
 	if (leftAzimuth < 0.0) {
@@ -212,9 +181,9 @@
 	return result;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)possibleOrientation {
+//    return YES;
+//}
 
 - (void)startListening {
 	
@@ -238,7 +207,7 @@
 	if (!self.accelerometerManager) {
 		self.accelerometerManager = [UIAccelerometer sharedAccelerometer];
 	}
-	self.accelerometerManager.updateInterval = 0.01;
+	self.accelerometerManager.updateInterval = 0.15;
 	
 	// steal back the delegate
 	self.accelerometerManager.delegate = self;
@@ -249,27 +218,33 @@
 }
 
 - (void)deviceOrientationDidChange:(NSNotification *)notification {
+	UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+
+	NSLog(@"changed orientation!");
 	
-	//we only care about responding to these changes if the delegate cares.
-	if (self.delegate && [self.delegate respondsToSelector:@selector(shouldAutorotateViewsToInterfaceOrientation:)]) {
+	if (orientation != UIDeviceOrientationUnknown && orientation != UIDeviceOrientationFaceUp && orientation != UIDeviceOrientationFaceDown) {
+		CGAffineTransform transform = CGAffineTransformMakeRotation(degreesToRadians(0));
+		CGRect bounds = [[UIScreen mainScreen] bounds];
 		
-		UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+		if (orientation == UIDeviceOrientationLandscapeLeft) {
+			transform = CGAffineTransformMakeRotation(degreesToRadians(90));
+			bounds.size.width = [[UIScreen mainScreen] bounds].size.height;
+			bounds.size.height = [[UIScreen mainScreen] bounds].size.width;
+		}
+		else if (orientation == UIDeviceOrientationLandscapeRight) {
+			transform = CGAffineTransformMakeRotation(degreesToRadians(-90));
+			bounds.size.width = [[UIScreen mainScreen] bounds].size.height;
+			bounds.size.height = [[UIScreen mainScreen] bounds].size.width;
+		} else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
+			transform = CGAffineTransformMakeRotation(degreesToRadians(180));
+		}
 		
-		BOOL shouldAutorotate = [self.delegate shouldAutorotateViewsToInterfaceOrientation:orientation];
-		if (!shouldAutorotate) return;
+		self.view.transform = CGAffineTransformIdentity;
+		self.view.transform = transform;
+		self.view.bounds = bounds;
 		
-		//remember our old orientation.
-		UIInterfaceOrientation oldOrientation = self.viewInterfaceOrientation;
-		//assign our new orientation.
-		viewInterfaceOrientation = orientation;
-		
-		//go through and rotate all the views.
-		
-		CGFloat rotation = [self _rotationFromOrientation:oldOrientation toOrientation:self.viewInterfaceOrientation];
-		ar_overlayView.transform = CGAffineTransformRotate(ar_overlayView.transform, rotation);
-//		for (UIView *subview in ar_coordinateViews) {
-//			subview.transform = CGAffineTransformRotate(subview.transform, rotation);
-//		}
+//		[self setDegreeRange:[[self displayView] bounds].size.width / 12];
+		[self updateLocations:nil];
 	}
 }
 
@@ -306,8 +281,6 @@
 	
 	return point;
 }
-
-#define kFilteringFactor 0.05
 
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
 	
@@ -508,14 +481,6 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 	[ar_overlayView setFrame:self.cameraController.view.bounds];
 #endif
 	
-	if (!_updateTimer) {
-		_updateTimer = [[NSTimer scheduledTimerWithTimeInterval:self.updateFrequency
-													 target:self
-												   selector:@selector(updateLocations:)
-												   userInfo:nil
-													repeats:YES] retain];
-	}
-	
 	[super viewDidAppear:animated];
 }
 
@@ -529,8 +494,6 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 										  ar_overlayView.frame.size.width,
 										  ar_debugView.frame.size.height)];
 	}
-	
-	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -638,34 +601,12 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 
 - (double)_widthInRadiansForView:(UIView *)viewToDraw {
 	CGRect viewBounds = viewToDraw.bounds;
-	
-	BOOL sideways = (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight);
-	
-	//autoadjust the width and height of our viewport based on the view's size.
-	
-	if (!sideways) {
-		return VIEWPORT_WIDTH_RADIANS / (self.view.bounds.size.width / viewBounds.size.width);
-	} else {
-		return VIEWPORT_HEIGHT_RADIANS / (self.view.bounds.size.height / viewBounds.size.height);
-	}
-	
-	return -1.0;
+	return VIEWPORT_WIDTH_RADIANS / (self.view.bounds.size.width / viewBounds.size.width);
 }
 
 - (double)_heightInRadiansForView:(UIView *)viewToDraw {
 	CGRect viewBounds = viewToDraw.bounds;
-	
-	BOOL sideways = (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight);
-	
-	//autoadjust the width and height of our viewport based on the view's size.
-	
-	if (sideways) {
-		return VIEWPORT_WIDTH_RADIANS / (self.view.bounds.size.width / viewBounds.size.width);
-	} else {
-		return VIEWPORT_HEIGHT_RADIANS / (self.view.bounds.size.height / viewBounds.size.height);
-	}
-	
-	return -1.0;
+	return VIEWPORT_HEIGHT_RADIANS / (self.view.bounds.size.height / viewBounds.size.height);
 }
 
 @end
