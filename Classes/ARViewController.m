@@ -433,9 +433,6 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 		}
 		index++;
 	}
-	
-	// Ew this is hacky.
-	[[ar_overlayView superview] bringSubviewToFront:ar_overlayView];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
